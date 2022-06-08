@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace doctors.Services
 {
-	public class DoctorsDatabaseService : IDatabaseService
+	public class DoctorsDatabaseService : IDoctorsDatabaseService
 	{
 		private readonly DatabaseContext _databaseContext;
 

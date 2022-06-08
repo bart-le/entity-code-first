@@ -13,9 +13,9 @@ namespace doctors.Controllers
 	[ApiController]
 	public class DoctorsController : ControllerBase
 	{
-		private readonly IDatabaseService _databaseService;
+		private readonly IDoctorsDatabaseService _databaseService;
 
-		public DoctorsController(IDatabaseService databaseService)
+		public DoctorsController(IDoctorsDatabaseService databaseService)
 		{
 			_databaseService = databaseService;
 		}

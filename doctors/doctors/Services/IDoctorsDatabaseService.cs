@@ -7,7 +7,7 @@ using doctors.Models.DTO;
 
 namespace doctors.Services
 {
-	public interface IDatabaseService
+	public interface IDoctorsDatabaseService
 	{
 		Task<IEnumerable<DoctorDto>> GetDoctorsAsync();
 		Task<DoctorDto> GetDoctorAsync(int idDoctor);
