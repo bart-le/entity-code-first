@@ -24,6 +24,7 @@ namespace doctors
 		{
 			services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultDatabaseConnection")));
 			services.AddScoped<IDoctorsDatabaseService, DoctorsDatabaseService>();
+			services.AddScoped<IPrescriptionsDatabaseService, PrescriptionsDatabaseService>();
 			services.AddRouting(options => options.LowercaseUrls = true);
 			services.AddControllers();
 			services.AddSwaggerGen(c =>
