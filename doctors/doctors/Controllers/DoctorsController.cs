@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
+using doctors.Models.DTO;
 using doctors.Services;
 
 using Microsoft.AspNetCore.Http;
@@ -30,6 +31,17 @@ namespace doctors.Controllers
 			return doctor == null
 				? NotFound($"Couldn't find doctor with ID {idDoctor}")
 				: Ok(doctor);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> AddDoctorAsync([FromBody] DoctorDto doctorDto)
+		{
+			if (await _databaseService.DoctorExistsAsync(doctorDto.Email))
+				return BadRequest("Doctor already exists");
+
+			await _databaseService.AddDoctorAsync(doctorDto);
+
+			return Ok();
 		}
 	}
 }

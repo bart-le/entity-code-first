@@ -2,6 +2,7 @@
 using doctors.Models.DTO;
 
 using Microsoft.EntityFrameworkCore;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,26 @@ namespace doctors.Services
 					LastName = doctor.LastName,
 					Email = doctor.Email
 				}).FirstOrDefaultAsync();
+		}
+
+		public async Task<bool> DoctorExistsAsync(string email)
+		{
+			return await _databaseContext.Doctors
+				.AnyAsync(doctor => doctor.Email.Equals(email));
+		}
+
+		public async Task AddDoctorAsync(DoctorDto payload)
+		{
+			var doctor = new Doctor
+			{
+				FirstName = payload.FirstName,
+				LastName = payload.LastName,
+				Email = payload.Email
+			};
+
+			_databaseContext.Doctors.Add(doctor);
+
+			await _databaseContext.SaveChangesAsync();
 		}
 	}
 }

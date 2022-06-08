@@ -11,5 +11,7 @@ namespace doctors.Services
 	{
 		Task<IEnumerable<DoctorDto>> GetDoctorsAsync();
 		Task<DoctorDto> GetDoctorAsync(int idDoctor);
+		Task<bool> DoctorExistsAsync(string email);
+		Task AddDoctorAsync(DoctorDto payload);
 	}
 }
