@@ -1,4 +1,6 @@
-﻿using doctors.Models;
+﻿using System;
+
+using doctors.Models;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -25,6 +27,19 @@ namespace doctors.Configurations
 				.HasOne(prescription => prescription.Doctor)
 				.WithMany(doctor => doctor.Prescriptions)
 				.HasForeignKey(prescription => prescription.IdDoctor);
+
+			builder.HasData(
+					new Prescription { IdPrescription = 1, Date = Convert.ToDateTime("2022-01-01"), DueDate = Convert.ToDateTime("2023-01-01"), IdPatient = 1, IdDoctor = 1 },
+					new Prescription { IdPrescription = 2, Date = Convert.ToDateTime("2022-01-01"), DueDate = Convert.ToDateTime("2023-01-01"), IdPatient = 2, IdDoctor = 2 },
+					new Prescription { IdPrescription = 3, Date = Convert.ToDateTime("2022-01-01"), DueDate = Convert.ToDateTime("2023-01-01"), IdPatient = 3, IdDoctor = 3 },
+					new Prescription { IdPrescription = 4, Date = Convert.ToDateTime("2022-01-01"), DueDate = Convert.ToDateTime("2023-01-01"), IdPatient = 4, IdDoctor = 4 },
+					new Prescription { IdPrescription = 5, Date = Convert.ToDateTime("2022-01-01"), DueDate = Convert.ToDateTime("2023-01-01"), IdPatient = 5, IdDoctor = 5 },
+					new Prescription { IdPrescription = 6, Date = Convert.ToDateTime("2022-01-01"), DueDate = Convert.ToDateTime("2023-01-01"), IdPatient = 1, IdDoctor = 1 },
+					new Prescription { IdPrescription = 7, Date = Convert.ToDateTime("2022-01-01"), DueDate = Convert.ToDateTime("2023-01-01"), IdPatient = 2, IdDoctor = 2 },
+					new Prescription { IdPrescription = 8, Date = Convert.ToDateTime("2022-01-01"), DueDate = Convert.ToDateTime("2023-01-01"), IdPatient = 3, IdDoctor = 3 },
+					new Prescription { IdPrescription = 9, Date = Convert.ToDateTime("2022-01-01"), DueDate = Convert.ToDateTime("2023-01-01"), IdPatient = 4, IdDoctor = 4 },
+					new Prescription { IdPrescription = 10, Date = Convert.ToDateTime("2022-01-01"), DueDate = Convert.ToDateTime("2023-01-01"), IdPatient = 5, IdDoctor = 5 }
+				);
 		}
 	}
 }

@@ -26,6 +26,19 @@ namespace doctors.Configurations
 				.HasOne(prescriptionMedicament => prescriptionMedicament.Medicament)
 				.WithMany(medicament => medicament.PrescriptionMedicaments)
 				.HasForeignKey(prescriptionMedicament => prescriptionMedicament.IdMedicament);
+
+			builder.HasData(
+					new PrescriptionMedicament { IdMedicament = 1, IdPrescription = 2, Dose = 1, Details = "0-0-1" },
+					new PrescriptionMedicament { IdMedicament = 4, IdPrescription = 3, Dose = 1, Details = "0-0-1" },
+					new PrescriptionMedicament { IdMedicament = 5, IdPrescription = 1, Dose = 10, Details = "1-1-1" },
+					new PrescriptionMedicament { IdMedicament = 3, IdPrescription = 2, Dose = 10, Details = "1-1-1" },
+					new PrescriptionMedicament { IdMedicament = 4, IdPrescription = 5, Dose = 1, Details = "1-0-0" },
+					new PrescriptionMedicament { IdMedicament = 2, IdPrescription = 1, Dose = 1, Details = "1-0-0" },
+					new PrescriptionMedicament { IdMedicament = 3, IdPrescription = 4, Dose = 1, Details = "1-0-0" },
+					new PrescriptionMedicament { IdMedicament = 1, IdPrescription = 5, Dose = 1, Details = "1-0-0" },
+					new PrescriptionMedicament { IdMedicament = 2, IdPrescription = 3, Dose = 2, Details = "0-1-1" },
+					new PrescriptionMedicament { IdMedicament = 5, IdPrescription = 4, Dose = 2, Details = "0-1-1" }
+				);
 		}
 	}
 }
