@@ -1,4 +1,7 @@
-﻿using doctors.Services;
+﻿using System;
+using System.Threading.Tasks;
+
+using doctors.Services;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +17,19 @@ namespace doctors.Controllers
 		public DoctorsController(IDatabaseService databaseService)
 		{
 			_databaseService = databaseService;
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> GetDoctorsAsync([FromQuery] string idDoctor)
+		{
+			if (idDoctor == null)
+				return Ok(await _databaseService.GetDoctorsAsync());
+
+			var doctor = await _databaseService.GetDoctorAsync(Convert.ToInt32(idDoctor));
+
+			return doctor == null
+				? NotFound($"Couldn't find doctor with ID {idDoctor}")
+				: Ok(doctor);
 		}
 	}
 }
