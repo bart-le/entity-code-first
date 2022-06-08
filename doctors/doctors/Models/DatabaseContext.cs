@@ -1,4 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Numerics;
+
+using doctors.Configurations;
+
+using Microsoft.EntityFrameworkCore;
 
 namespace doctors.Models
 {
@@ -21,6 +25,12 @@ namespace doctors.Models
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);
+
+			modelBuilder.ApplyConfiguration(new DoctorConfiguration());
+			modelBuilder.ApplyConfiguration(new MedicamentConfiguration());
+			modelBuilder.ApplyConfiguration(new PatientConfiguration());
+			modelBuilder.ApplyConfiguration(new PrescriptionConfiguration());
+			modelBuilder.ApplyConfiguration(new PrescriptionMedicamentConfiguration());
 		}
 	}
 }
