@@ -37,9 +37,20 @@ namespace doctors.Controllers
 		public async Task<IActionResult> AddDoctorAsync([FromBody] DoctorDto doctorDto)
 		{
 			if (await _databaseService.DoctorExistsAsync(doctorDto.Email))
-				return BadRequest("Doctor already exists");
+				return BadRequest($"Doctor with email '{doctorDto.Email}' already exists");
 
 			await _databaseService.AddDoctorAsync(doctorDto);
+
+			return Ok();
+		}
+
+		[HttpPut("{idDoctor}")]
+		public async Task<IActionResult> EditDoctorAsync([FromRoute] int idDoctor, [FromBody] DoctorDto doctorDto)
+		{
+			if (await _databaseService.GetDoctorAsync(idDoctor) == null)
+				return NotFound($"Couldn't find doctor with ID {idDoctor}");
+
+			await _databaseService.EditDoctorAsync(idDoctor, doctorDto);
 
 			return Ok();
 		}

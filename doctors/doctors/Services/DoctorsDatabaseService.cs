@@ -63,5 +63,20 @@ namespace doctors.Services
 
 			await _databaseContext.SaveChangesAsync();
 		}
+
+		public async Task EditDoctorAsync(int idDoctor, DoctorDto payload)
+		{
+			var doctor = await _databaseContext.Doctors
+				.Where(doctor => doctor.IdDoctor == idDoctor)
+				.FirstOrDefaultAsync();
+
+			doctor.FirstName = payload.FirstName;
+			doctor.LastName = payload.LastName;
+			doctor.Email = payload.Email;
+
+			_databaseContext.Update(doctor);
+
+			await _databaseContext.SaveChangesAsync();
+		}
 	}
 }

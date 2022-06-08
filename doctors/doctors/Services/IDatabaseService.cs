@@ -13,5 +13,6 @@ namespace doctors.Services
 		Task<DoctorDto> GetDoctorAsync(int idDoctor);
 		Task<bool> DoctorExistsAsync(string email);
 		Task AddDoctorAsync(DoctorDto payload);
+		Task EditDoctorAsync(int idDoctor, DoctorDto payload);
 	}
 }
