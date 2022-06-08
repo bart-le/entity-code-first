@@ -47,7 +47,7 @@ namespace doctors.Controllers
 		[HttpPut("{idDoctor}")]
 		public async Task<IActionResult> EditDoctorAsync([FromRoute] int idDoctor, [FromBody] DoctorDto doctorDto)
 		{
-			if (await _databaseService.GetDoctorAsync(idDoctor) == null)
+			if (!await _databaseService.DoctorExistsAsync(idDoctor))
 				return NotFound($"Couldn't find doctor with ID {idDoctor}");
 
 			await _databaseService.EditDoctorAsync(idDoctor, doctorDto);

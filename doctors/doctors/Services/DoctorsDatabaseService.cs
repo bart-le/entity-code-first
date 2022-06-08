@@ -50,6 +50,12 @@ namespace doctors.Services
 				.AnyAsync(doctor => doctor.Email.Equals(email));
 		}
 
+		public async Task<bool> DoctorExistsAsync(int idDoctor)
+		{
+			return await _databaseContext.Doctors
+				.AnyAsync(doctor => doctor.IdDoctor.Equals(idDoctor));
+		}
+
 		public async Task AddDoctorAsync(DoctorDto payload)
 		{
 			var doctor = new Doctor
