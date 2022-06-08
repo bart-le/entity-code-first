@@ -80,7 +80,7 @@ namespace doctors.Services
 			doctor.LastName = payload.LastName;
 			doctor.Email = payload.Email;
 
-			_databaseContext.Update(doctor);
+			_databaseContext.Doctors.Update(doctor);
 
 			await _databaseContext.SaveChangesAsync();
 		}
