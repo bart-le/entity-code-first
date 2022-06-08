@@ -84,5 +84,15 @@ namespace doctors.Services
 
 			await _databaseContext.SaveChangesAsync();
 		}
+
+		public async Task DeleteDoctorAsync(int idDoctor)
+		{
+			var doctor = new Doctor { IdDoctor = idDoctor };
+			
+			_databaseContext.Doctors.Attach(doctor);
+			_databaseContext.Doctors.Remove(doctor);
+
+			await _databaseContext.SaveChangesAsync();
+		}
 	}
 }

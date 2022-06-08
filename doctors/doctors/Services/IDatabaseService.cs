@@ -15,5 +15,6 @@ namespace doctors.Services
 		Task<bool> DoctorExistsAsync(int idDoctor);
 		Task AddDoctorAsync(DoctorDto payload);
 		Task EditDoctorAsync(int idDoctor, DoctorDto payload);
+		Task DeleteDoctorAsync(int idDoctor);
 	}
 }

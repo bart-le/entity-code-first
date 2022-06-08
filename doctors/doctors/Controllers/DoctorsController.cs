@@ -54,5 +54,16 @@ namespace doctors.Controllers
 
 			return Ok();
 		}
+
+		[HttpDelete("{idDoctor}")]
+		public async Task<IActionResult> DeleteDoctorAsync([FromRoute] int idDoctor)
+		{
+			if (!await _databaseService.DoctorExistsAsync(idDoctor))
+				return NotFound($"Couldn't find doctor with ID {idDoctor}");
+
+			await _databaseService.DeleteDoctorAsync(idDoctor);
+
+			return Ok();
+		}
 	}
 }
